@@ -1,0 +1,26 @@
+/target
+**/*.pdb
+**/*.exe
+**/*.bin
+Cargo.lock
+# =====================
+# Rust / Backend
+# =====================
+/backend/target/
+/backend/.env
+/backend/Cargo.lock
+
+# =====================
+# Node / React Frontend
+# =====================
+/frontend/node_modules/
+/frontend/dist/
+/frontend/build/
+/frontend/.env
+
+# =====================
+# Sistema / OS
+# =====================
+.DS_Store
+Thumbs.db
+*.log

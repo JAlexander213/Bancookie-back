@@ -1,0 +1,18 @@
+[package]
+name = "practica68-ApiRest"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+actix-web = "4"
+actix-rt = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sqlx = { version = "0.7", features = ["runtime-tokio", "mysql", "macros", "uuid", "chrono", "bigdecimal"] }
+dotenvy = "0.15"
+bcrypt = "0.15"
+actix-cors = "0.7"
+jsonwebtoken = "8"
+chrono = "0.4.42"
+rand = "0.9.2"
+bigdecimal = "0.4"
