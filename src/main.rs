@@ -28,19 +28,27 @@ async fn main() -> std::io::Result<()> {
 
     println!("Servidor corriendo en http://0.0.0.0:{}/", port);
 
-    HttpServer::new(move || {
-        let cors = Cors::default()
-            .allow_any_origin()
-            .allow_any_method()
-            .allow_any_header()
-            .supports_credentials();
+    // Usa 127.0.0.1 localmente, pero 0.0.0.0 en Render
+let host = if std::env::var("RENDER").is_ok() {
+    "0.0.0.0"
+} else {
+    "127.0.0.1"
+};
 
-        App::new()
-            .wrap(cors)
-            .app_data(web::Data::new(pool.clone()))
-            .configure(controller::routes)
-    })
-    .bind(("0.0.0.0", port))? // <- Muy importante para Render
-    .run()
-    .await
+HttpServer::new(move || {
+    let cors = Cors::default()
+        .allow_any_origin()
+        .allow_any_method()
+        .allow_any_header()
+        .supports_credentials();
+
+    App::new()
+        .wrap(cors)
+        .app_data(web::Data::new(pool.clone()))
+        .configure(controller::routes)
+})
+.bind((host, port))?
+.run()
+.await
+
 }

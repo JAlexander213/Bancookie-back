@@ -370,7 +370,6 @@ pub async fn transfer(
         });
     }
 
-
     //  Buscar destinatario por número de cuenta
     let destinatario = match find_user_by_account_number(pool.get_ref(), &data.cuenta_destino).await
     {
